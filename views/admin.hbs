@@ -1,0 +1,43 @@
+{{!--
+Page: Admin
+--}}
+
+<h1>ADMIN PAGE</h1>
+{{> all/form_add}}
+
+{{!-- Condition si "db" est true --}}
+{{#if db}}
+
+{{!-- Boucle each de "db" afin d'afficher les items --}}
+{{#each db}}
+
+<div class="list-item">
+    <p>{{@index}} | <b>Titre:</b> {{this.title}} & <b>Price:</b> {{this.price}}</p>
+    <div style="display:flex;">
+    {{!-- 
+        Formulaire avec des input ayant pour name "title & price" afin de les récupérer 
+        dans le req.body avec body-parser et ayant en action la route qu'on lui donne
+    --}}
+    <form action="/article/{{this.id}}?_method=PUT" method="post">
+        <input type="text" name="title">
+        <input type="text" name="price">
+        {{!-- Boutton de type submit --}}
+        <button type="submit">EDIT</button>
+    </form>
+    <form action="/article/{{this.id}}?_method=DELETE" method="post">
+        <button type="submit">DELETE</button>
+    </form>
+    </div>
+
+    <form action="/formulaire/{{this.id}}?_method=DELETE" method="post">
+        <button type="submit">DELETE</button>
+    </form>
+
+</div> 
+{{/each}}
+
+{{!-- Sinon tu affiche le h2 --}}
+{{else}}
+<h2>Aucun article dans la DB</h2>
+{{/if}}
+

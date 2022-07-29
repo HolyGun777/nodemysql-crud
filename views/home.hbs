@@ -1,0 +1,19 @@
+{{!--
+Page: Home
+--}}
+
+<h1>Titre page home</h1>
+{{!-- Boucle each de "db" avec un registerHelper "limit" ainsi que les data dynamique qu'on lui donne --}}
+{{#each (limit db 10)}}
+    {{!-- Partial afin d'afficher les items --}}
+    {{> home/list id=this.id titre=this.title price=this.price articles=true}}
+{{/each}}
+
+
+{{#each (limit db_formulaire 10)}}
+    {{!-- Partial afin d'afficher les items --}}
+    {{> home/list nom=this.nom prenom=this.prenom numero=this.numero formulaires=true}}
+{{/each}}
+
+
+{{> all/form_add }}

@@ -1,0 +1,32 @@
+{{#if articles}}
+<p class="div-item">
+    <a onclick="hideOrNo({{id}})" id="art-btn-{{id}}">
+        Afficher l'article {{id}}
+    </a>
+    <br />
+</p>
+
+{{! Script afin d'afficher et masquer les information de chaque article }}
+<script>
+    function hideOrNo(id) { 
+        var div = document.getElementById(`art-${id}`);
+        var btn = document.getElementById(`art-btn-${id}`);
+        if(div.style.display === "none"){
+            div.style.display = "block";
+            btn.textContent = `Masquer l'article ${id}`;
+        }else{
+            div.style.display = "none";
+            btn.textContent = `Afficher l'article ${id}` 
+        } 
+    }
+</script>
+
+{{! Chaque article détaillé masquer par défaut }}
+<div style="display: none;" id="art-{{id}}">
+  <p><b>Titre:</b> {{title}} & <b>Price:</b> {{price}}</p>
+</div>
+{{/if}}
+
+{{#if formulaires}}
+  <p><b>nom:</b> {{nom}} & <b>prenom:</b> {{prenom}}</p> & <b>numero:</b> {{numero}}</p>
+{{/if}}
